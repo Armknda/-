@@ -7,6 +7,9 @@ import MusicRankList from 'views/discover/childRouter/MusicRankList'
 import ArtistCategory from 'views/discover/childRouter/ArtistCategory'
 import NewSongsR from 'views/discover/childRouter/NewSongsR'
 const routes = [{
+        path: '',
+        redirect: '/discover/individ'
+    }, {
         path: '/discover/individ',
         component: Individuation
     },

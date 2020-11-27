@@ -2,7 +2,13 @@
   <div>个性推荐</div>
 </template>
 <script>
-export default {};
+import Slider from "components/common/slider/Slider";
+export default {
+  name: "Individuation",
+  components: {
+    Slider,
+  },
+};
 </script>
 <style>
 </style>

@@ -47,9 +47,9 @@ export default {
 
 <style scoped>
 .tabbar {
-  height: 54px;
+  height: 45px;
   width: 100%;
-  background-color: #088f6d;
+  background-color: #212023;
 }
 .back {
   display: inline-block;
