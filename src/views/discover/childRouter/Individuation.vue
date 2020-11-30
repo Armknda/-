@@ -1,6 +1,5 @@
 <template>
   <div class="individuation">
-    <div>个性推荐</div>
     <slider />
   </div>
 </template>

@@ -5,17 +5,20 @@
         <img src="~assets/img/swiper/prev.svg" alt="" />
       </div>
     </div>
+    <div
+      class="imgBox"
+      v-for="(item, index) in banners"
+      :key="index"
+      v-show="index == currentIndex"
+    >
+      <a :href="item.url" class="imglink">
+        <img :src="item.imageUrl" alt="" />
+      </a>
+    </div>
     <div class="right">
       <div class="next">
         <img src="~assets/img/swiper/next.svg" alt="" />
       </div>
-    </div>
-    <div class="imgBox">
-      <!-- <div v-for="item in banners" :key="item" class="slider">
-      <a :href="item.url" class="imgSize">
-        <img :src="item.imageUrl" />
-      </a>
-    </div> -->
     </div>
   </div>
 </template>
@@ -26,15 +29,56 @@ export default {
   data() {
     return {
       banners: [],
+      currentIndex: 0,
     };
   },
+  // props: {
+  //   bannner: {
+  //     type: Array,
+  //     banners: [],
+  //   },
+  //   index: {
+  //     type: Number,
+  //     indexs: 0,
+  //   },
+  // },
   created() {
     getBanner().then((res) => {
       console.log(res);
       this.banners = res.data.banners;
+      console.log(this.banners);
     });
   },
 };
 </script>
 <style>
+.imgBox {
+  width: 730px;
+}
+.imgBox img {
+  width: 100%;
+}
+.left {
+  width: 37px;
+  margin-right: 20px;
+}
+.left img {
+  width: 100%;
+}
+.right {
+  width: 37px;
+  margin-left: 20px;
+}
+.right img {
+  width: 100%;
+}
+.slider {
+  display: flex;
+  overflow: hidden;
+  width: 1000px;
+  height: 270.36px;
+  justify-content: center;
+  margin: 0 auto;
+  align-items: center;
+}
 </style>
