@@ -2,7 +2,7 @@
   <div class="slider">
     <div class="left">
       <div class="prev">
-        <img src="~assets/img/swiper/prev.svg" alt="" />
+        <img src="~assets/img/swiper/prev.svg" alt="" @click="prevImg" />
       </div>
     </div>
     <div
@@ -17,7 +17,7 @@
     </div>
     <div class="right">
       <div class="next">
-        <img src="~assets/img/swiper/next.svg" alt="" />
+        <img src="~assets/img/swiper/next.svg" alt="" @click="nextImg" />
       </div>
     </div>
   </div>
@@ -30,6 +30,7 @@ export default {
     return {
       banners: [],
       currentIndex: 0,
+      imgNumb: "",
     };
   },
   // props: {
@@ -42,12 +43,29 @@ export default {
   //     indexs: 0,
   //   },
   // },
-  created() {
+  mounted() {
     getBanner().then((res) => {
       console.log(res);
       this.banners = res.data.banners;
-      console.log(this.banners);
+      this.imgNumb = res.data.banners.length;
+      // console.log(this.banners);
     });
+  },
+  methods: {
+    prevImg: function () {
+      if (this.currentIndex === 0) {
+        return (this.currentIndex = this.imgNumb - 1);
+      } else {
+        return this.currentIndex--;
+      }
+    },
+    nextImg: function () {
+      if (this.currentIndex === this.imgNumb - 1) {
+        return (this.currentIndex = 0);
+      } else {
+        return this.currentIndex++;
+      }
+    },
   },
 };
 </script>
