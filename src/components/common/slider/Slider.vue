@@ -1,6 +1,6 @@
 <template>
   <div class="parentSlider">
-    <div class="slider">
+    <div class="slider" @mouseover="clearAuto()" @mouseout="autoPlay()">
       <div class="left">
         <div class="prev">
           <img src="~assets/img/swiper/prev.svg" alt="" @click="prevImg" />
@@ -43,6 +43,7 @@ export default {
       currentIndex: 0,
       imgNumb: "",
       dots: [],
+      timer: "",
     };
   },
   mounted() {
@@ -51,29 +52,38 @@ export default {
       this.banners = res.data.banners;
       this.imgNumb = res.data.banners.length;
       this.initDots();
-      console.log(this.dots);
+      this.autoPlay();
+      // console.log(this.dots);
     });
   },
   methods: {
-    prevImg: function () {
+    prevImg() {
       if (this.currentIndex === 0) {
         return (this.currentIndex = this.imgNumb - 1);
       } else {
         return this.currentIndex--;
       }
     },
-    nextImg: function () {
+    nextImg() {
       if (this.currentIndex === this.imgNumb - 1) {
         return (this.currentIndex = 0);
       } else {
         return this.currentIndex++;
       }
     },
-    initDots: function () {
+    initDots() {
       this.dots = new Array(this.imgNumb);
     },
-    switchTo: function (index) {
+    switchTo(index) {
       this.currentIndex = index;
+    },
+    autoPlay() {
+      this.timer = setInterval(() => {
+        this.nextImg();
+      }, 5000);
+    },
+    clearAuto() {
+      clearInterval(this.timer);
     },
   },
 };
@@ -137,5 +147,15 @@ export default {
 }
 .active {
   background: rgba(196, 12, 12);
+}
+.v-enter,
+.v-leave-to {
+  opacity: 0;
+  transform: translateX(100px);
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.6s ease;
 }
 </style>
