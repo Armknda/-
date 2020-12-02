@@ -22,7 +22,13 @@
         </div>
       </div>
       <div class="dots">
-        <span class="dotsStyle" v-for="item in dots" :key="item"></span>
+        <span
+          class="dotsStyle"
+          v-for="(item, index) in dots"
+          :key="index"
+          :class="{ active: index === currentIndex }"
+          @click="switchTo(index)"
+        ></span>
       </div>
     </div>
   </div>
@@ -39,23 +45,13 @@ export default {
       dots: [],
     };
   },
-  // props: {
-  //   bannner: {
-  //     type: Array,
-  //     banners: [],
-  //   },
-  //   index: {
-  //     type: Number,
-  //     indexs: 0,
-  //   },
-  // },
   mounted() {
     getBanner().then((res) => {
       console.log(res);
       this.banners = res.data.banners;
       this.imgNumb = res.data.banners.length;
       this.initDots();
-      // console.log(this.imgNumb);
+      console.log(this.dots);
     });
   },
   methods: {
@@ -75,6 +71,9 @@ export default {
     },
     initDots: function () {
       this.dots = new Array(this.imgNumb);
+    },
+    switchTo: function (index) {
+      this.currentIndex = index;
     },
   },
 };
@@ -135,5 +134,8 @@ export default {
   border-radius: 50%;
   margin: 0 8px;
   background: rgba(255, 255, 255, 0.5);
+}
+.active {
+  background: rgba(196, 12, 12);
 }
 </style>
