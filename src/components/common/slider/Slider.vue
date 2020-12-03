@@ -48,7 +48,7 @@ export default {
   },
   mounted() {
     getBanner().then((res) => {
-      console.log(res);
+      // console.log(res);
       this.banners = res.data.banners;
       this.imgNumb = res.data.banners.length;
       this.initDots();
@@ -56,6 +56,9 @@ export default {
       // console.log(this.dots);
     });
   },
+  // unmounted() {
+  //   this.clearInterval();
+  // },
   methods: {
     prevImg() {
       if (this.currentIndex === 0) {

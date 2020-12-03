@@ -3,7 +3,6 @@
     <tab-bar></tab-bar>
     <tab></tab>
     <!-- <Main /> -->
-
     <router-view></router-view>
   </div>
 </template>
