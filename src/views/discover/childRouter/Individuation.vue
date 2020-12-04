@@ -22,7 +22,7 @@ export default {
 </script>
 <style>
 .songs {
-  width: 730px;
+  width: 960px;
   margin: 5px auto;
 }
 </style>

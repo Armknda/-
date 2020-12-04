@@ -93,7 +93,7 @@ export default {
 </script>
 <style>
 .imgBox {
-  width: 730px;
+  width: 870px;
 }
 .imgBox img {
   width: 100%;
@@ -123,8 +123,8 @@ export default {
 .slider {
   display: flex;
   overflow: hidden;
-  width: 1000px;
-  height: 270.36px;
+  width: 1500px;
+  height: 322.22px;
   justify-content: center;
   margin: 0 auto;
   align-items: center;

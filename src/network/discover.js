@@ -4,13 +4,8 @@ export function getBanner() {
         url: '/banner'
     })
 }
-export function getRecommendResource(cookie, uid) {
+export function getRecommendResource() {
     return request({
-        url: '/recommend/songs',
-        // xhrFields: { withCredentials: true },
-        params: {
-            cookie: cookie,
-            uid: uid,
-        },
+        url: '/personalized?limit=12',
     })
 }
