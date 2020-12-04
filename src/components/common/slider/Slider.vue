@@ -13,7 +13,7 @@
         v-show="index == currentIndex"
       >
         <a :href="item.url" class="imglink">
-          <img :src="item.imageUrl" alt="" />
+          <img :src="item.imageUrl" alt="" @load="imgLoad" />
         </a>
       </div>
       <div class="right">
@@ -88,6 +88,9 @@ export default {
     clearAuto() {
       clearInterval(this.timer);
     },
+    imgLoad() {
+      console.log("imgLoad");
+    },
   },
 };
 </script>
@@ -123,7 +126,7 @@ export default {
 .slider {
   display: flex;
   overflow: hidden;
-  width: 1500px;
+  width: 1000px;
   height: 322.22px;
   justify-content: center;
   margin: 0 auto;

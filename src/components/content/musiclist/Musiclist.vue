@@ -23,14 +23,14 @@ export default {
   },
   mounted() {
     getRecommendResource().then((res) => {
-      console.log(res);
+      // console.log(res);
       this.personList = res.data.result;
-      console.log(this.personList);
+      // console.log(this.personList);
     });
   },
 };
 </script>
-<style>
+<style scoped>
 .musiclist {
   display: flex;
   flex-wrap: wrap;
@@ -44,7 +44,7 @@ export default {
 .list-item {
   display: inline-block;
   width: 150px;
-  margin: 0 6px;
+  margin: 2px 6px;
   position: relative;
 }
 .title {

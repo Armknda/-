@@ -49,7 +49,7 @@
 <script>
 export default {};
 </script>
-<style>
+<style scoped>
 .tab {
   height: 50px;
   width: 100%;

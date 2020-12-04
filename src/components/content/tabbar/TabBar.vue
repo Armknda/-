@@ -66,8 +66,8 @@ export default {
   height: 100%;
   cursor: pointer;
   align-items: center;
+  width: 300px;
   float: left;
-  width: 15%;
 }
 .logo img {
   margin: 0px 10px 0px 10px;
@@ -75,7 +75,10 @@ export default {
 }
 .content {
   height: 100%;
+  width: 140px;
   float: right;
+  display: flex;
+  justify-content: right;
 }
 .right {
   height: 100%;
