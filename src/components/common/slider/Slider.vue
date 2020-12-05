@@ -13,7 +13,7 @@
         v-show="index == currentIndex"
       >
         <a :href="item.url" class="imglink">
-          <img :src="item.imageUrl" alt="" @load="imgLoad" />
+          <img :src="item.imageUrl" alt="" />
         </a>
       </div>
       <div class="right">

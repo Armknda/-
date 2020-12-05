@@ -6,6 +6,7 @@
       </keep-alive>
       <div class="songs">推荐歌单</div>
       <musiclist @load="imgReady" />
+      <private />
       <ul>
         <li>1</li>
         <li>1</li>
@@ -35,12 +36,14 @@
 import Slider from "components/common/slider/Slider";
 import Musiclist from "../../../components/content/musiclist/Musiclist.vue";
 import Scroll from "../../../components/common/scroll/Scroll.vue";
+import Private from "../../../components/content/private/Private.vue";
 export default {
   name: "Individuation",
   components: {
     Slider,
     Musiclist,
     Scroll,
+    Private,
   },
   methods: {
     imgReady() {

@@ -9,3 +9,8 @@ export function getRecommendResource() {
         url: '/personalized?limit=12',
     })
 }
+export function getPrivateResource() {
+    return request({
+        url: '/personalized/privatecontent/list?limit=3'
+    })
+}
