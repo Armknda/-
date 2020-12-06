@@ -14,3 +14,8 @@ export function getPrivateResource() {
         url: '/personalized/privatecontent/list?limit=3'
     })
 }
+export function getNewSongs() {
+    return request({
+        url: '/personalized/newsong'
+    })
+}

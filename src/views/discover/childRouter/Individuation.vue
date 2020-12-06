@@ -7,27 +7,13 @@
       <div class="songs">推荐歌单</div>
       <musiclist @load="imgReady" />
       <private />
+      <newsongs />
       <ul>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
       </ul>
     </scroll>
   </div>
@@ -37,6 +23,7 @@ import Slider from "components/common/slider/Slider";
 import Musiclist from "../../../components/content/musiclist/Musiclist.vue";
 import Scroll from "../../../components/common/scroll/Scroll.vue";
 import Private from "../../../components/content/private/Private.vue";
+import Newsongs from "../../../components/content/newsongs/Newsongs.vue";
 export default {
   name: "Individuation",
   components: {
@@ -44,6 +31,7 @@ export default {
     Musiclist,
     Scroll,
     Private,
+    Newsongs,
   },
   methods: {
     imgReady() {
@@ -59,7 +47,9 @@ export default {
 }
 .songs {
   width: 960px;
-  margin: 5px auto;
+  margin: 7px auto;
+  font-size: 20px;
+  border-bottom: 1px solid #b8b6b6;
 }
 .content {
   height: 100%;

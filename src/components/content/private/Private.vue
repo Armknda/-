@@ -24,7 +24,7 @@ export default {
   mounted() {
     getPrivateResource().then((res) => {
       this.privateList = res.data.result;
-      console.log(res);
+      // console.log(res);
     });
   },
 };
@@ -32,7 +32,9 @@ export default {
 <style scoped>
 .only {
   width: 960px;
-  margin: 5px auto 7px;
+  margin: 8px auto 10px;
+  font-size: 20px;
+  border-bottom: 1px solid #b8b6b6;
 }
 .item {
   width: 300px;
