@@ -24,8 +24,12 @@ export function getMusicListHot() {
         url: '/playlist/hot'
     })
 }
-export function getHighquality() {
+export function _getHighquality(cat, limit) {
     return request({
-        url: '/top/playlist/highquality?limit=12'
+        url: '/top/playlist/highquality',
+        params: {
+            cat: cat,
+            limit: limit
+        }
     })
 }
