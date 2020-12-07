@@ -19,3 +19,13 @@ export function getNewSongs() {
         url: '/personalized/newsong'
     })
 }
+export function getMusicListHot() {
+    return request({
+        url: '/playlist/hot'
+    })
+}
+export function getHighquality() {
+    return request({
+        url: '/top/playlist/highquality?limit=12'
+    })
+}
