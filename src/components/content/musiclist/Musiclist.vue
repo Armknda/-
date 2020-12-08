@@ -1,7 +1,7 @@
 <template>
   <div class="musiclist">
     <div class="list-item" v-for="(item, index) in personList" :key="index">
-      <img :src="item.picUrl" alt="" />
+      <img :src="item.picUrl" alt="" @load="listLoad" />
       <div class="title">{{ item.name }}</div>
       <div class="count">
         <div>
@@ -27,6 +27,11 @@ export default {
       this.personList = res.data.result;
       // console.log(this.personList);
     });
+  },
+  methods: {
+    listLoad() {
+      this.$bus.$emit("musiclistImgLoad");
+    },
   },
 };
 </script>

@@ -1,20 +1,25 @@
 <template>
   <div id="app">
     <tab-bar></tab-bar>
-    <tab></tab>
-    <!-- <Main /> -->
-    <router-view></router-view>
+    <!-- <tab></tab> -->
+    <Main />
+    <!-- <keep-alive>
+      <router-view></router-view>
+    </keep-alive> -->
   </div>
 </template>
 <script>
 import TabBar from "components/content/tabbar/TabBar";
-import Tab from "./components/content/tab/tab.vue";
+// import Main from "components/content/Main";
+import Main from "./components/content/Main.vue";
+// import Tab from "./components/content/tab/tab.vue";
 // import Main from "components/content/Main";
 export default {
   name: "App",
   components: {
     TabBar,
-    Tab,
+    Main,
+    // Tab,
     // Main,
   },
 };

@@ -13,7 +13,7 @@
         v-show="index == currentIndex"
       >
         <a :href="item.url" class="imglink">
-          <img :src="item.imageUrl" alt="" />
+          <img :src="item.imageUrl" alt="" @load="imgLoad" />
         </a>
       </div>
       <div class="right">
@@ -89,7 +89,8 @@ export default {
       clearInterval(this.timer);
     },
     imgLoad() {
-      console.log("imgLoad");
+      // console.log("imgLoad");
+      this.$bus.$emit("sliderImageLoad");
     },
   },
 };

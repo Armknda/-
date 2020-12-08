@@ -1,27 +1,31 @@
 <template>
   <div class="discover">
-    <nav-bar :list="list" ref="nav" />
-    <div class="content">12</div>
+    <Tab />
+    <div class="content">
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
+    </div>
   </div>
 </template>
 <script>
-import NavBar from "./childComps/NavBar.vue";
+import Tab from "../../components/content/tab/tab.vue";
+// import Tab from "./components/content/tab/tab.vue";
 export default {
-  components: { NavBar },
   name: "DiscoverMusic",
-  data() {
-    return {
-      list: [
-        // { link:"/discover/individ",name="个性推荐" },
-        // { link: "/discover/category", name: "歌单" },
-        // { link: "/discover/ranklist", name: "排行榜" },
-        // { link: "/discover/artist", name: "歌手" },
-        // { link: "/discover/newsongs", name: "最新音乐" },
-        // { link: "/discover/mv", name: "MV" },
-      ],
-    };
+  components: {
+    Tab,
   },
 };
 </script>
-<style>
+<style scoped>
+.discover {
+  width: 100%;
+  height: 100%;
+}
+.content {
+  width: 100%;
+  height: calc(100% - 50px);
+  overflow: hidden;
+}
 </style>

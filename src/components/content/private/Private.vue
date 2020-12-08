@@ -2,7 +2,7 @@
   <div class="private">
     <div class="only">独家放送</div>
     <div class="content">
-      <div class="item" v-for="item in privateList" :key="item">
+      <div class="item" v-for="(item, index) in privateList" :key="index">
         <div class="logo">
           <img src="~assets/img/leftmenu/shiping.svg" alt="" />
         </div>

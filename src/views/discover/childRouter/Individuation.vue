@@ -1,20 +1,20 @@
 <template>
   <div class="individuation">
-    <scroll class="content" ref="scroll">
+    <scroll class="indici-scroll" ref="scroll">
       <keep-alive>
         <slider />
       </keep-alive>
       <div class="songs">推荐歌单</div>
-      <musiclist @load="imgReady" />
+      <musiclist />
       <private />
       <newsongs />
-      <ul>
+      <!-- <ul>
         <li></li>
         <li></li>
         <li></li>
         <li></li>
         <li></li>
-      </ul>
+      </ul> -->
     </scroll>
   </div>
 </template>
@@ -32,6 +32,14 @@ export default {
     Scroll,
     Private,
     Newsongs,
+  },
+  created() {
+    this.$bus.$on("sliderImageLoad", () => {
+      this.$refs.scroll.refresh();
+    });
+    this.$bus.$on("musiclistImgLoad", () => {
+      this.$refs.scroll.refresh();
+    });
   },
   methods: {
     imgReady() {
@@ -51,7 +59,7 @@ export default {
   font-size: 20px;
   border-bottom: 1px solid #b8b6b6;
 }
-.content {
+.indici-scroll {
   height: 100%;
   width: 100%;
   overflow: hidden;
