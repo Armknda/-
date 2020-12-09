@@ -8,13 +8,6 @@
       <musiclist />
       <private />
       <newsongs />
-      <!-- <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul> -->
     </scroll>
   </div>
 </template>

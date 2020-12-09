@@ -1,6 +1,6 @@
 <template>
   <div class="musiclist">
-    <div class="list-item" v-for="(item, index) in personList" :key="index">
+    <div class="list-item" v-for="(item, index) in personList" :key="index" @click="enterDetail(index)">
       <img :src="item.picUrl" alt="" @load="listLoad" />
       <div class="title">{{ item.name }}</div>
       <div class="count">
@@ -32,6 +32,9 @@ export default {
     listLoad() {
       this.$bus.$emit("musiclistImgLoad");
     },
+    enterDetail(index){
+      this.$router.push("/musiclistdetail/"+this.personList[index].id)
+    }
   },
 };
 </script>

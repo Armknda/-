@@ -3,7 +3,7 @@
     <div class="logo">
       <img src="~assets/img/content/cat.jpg" alt="" />
       <div class="title">MAZHA音乐</div>
-      <div class="back">
+      <div class="back" @click="back()">
         <img src="~assets/img/content/back.svg" alt="" />
       </div>
     </div>
@@ -42,6 +42,12 @@ export default {
       statu: "未登录",
     };
   },
+  methods:{
+    back(){
+      // this.$router.go(-1);
+      this.$router.back();
+    }
+  }
 };
 </script>
 
