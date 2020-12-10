@@ -1,38 +1,64 @@
 <template>
-<div class="detail">
-  <detail-base-info :baseInfo="baseInfo"/>
-</div>
+  <div class="detail">
+    <scroll class="detail-scroll">
+      <detail-base-info :baseInfo="baseInfo" />
+      <music-item :musiclist="musiclist" />
+    </scroll>
+  </div>
 </template>
 <script>
-import DetailBaseInfo from './childComps/DetailBaseInfo.vue';
-import{
+import Slider from "components/common/slider/Slider";
+import DetailBaseInfo from "./childComps/DetailBaseInfo.vue";
+import MusicItem from "./childComps/MusicItem.vue";
+import {
   _getMusicListDetail,
-   baseInfo,
-} from "network/detail"
+  baseInfo,
+  _getSongDetail,
+  songDetail,
+} from "network/detail";
+import Scroll from "../../components/common/scroll/Scroll.vue";
+
 export default {
   name: "MusicListDetail",
-  data(){
-    return{
-      id:null,
-      musicListDetail:null,
-      baseInfo:null,
-    }
+  data() {
+    return {
+      id: null,
+      musicListDetail: null,
+      baseInfo: null,
+      musiclist: [],
+    };
   },
-  components:{
-  DetailBaseInfo
-
+  components: {
+    Scroll,
+    DetailBaseInfo,
+    MusicItem,
+    Scroll,
   },
-  created(){
-  this.id=this.$route.params.id;
+  created() {
+    this.id = this.$route.params.id;
 
-  _getMusicListDetail(this.id).then(res=>{
-  this.musicListDetail=res.data;
-  this.baseInfo=new baseInfo(this.musicListDetail.playlist);
-  console.log(this.musicListDetail);
-})
-
-  }
+    _getMusicListDetail(this.id).then((res) => {
+      this.musicListDetail = res.data;
+      this.baseInfo = new baseInfo(this.musicListDetail.playlist);
+      // console.log(this.musicListDetail);
+      for (let i of this.musicListDetail.playlist.trackIds) {
+        _getSongDetail(i.id).then((res) => {
+          let song = new songDetail(res.data.songs);
+          this.musiclist.push(song);
+        });
+      }
+      // console.log(this.musiclist);
+    });
+  },
 };
 </script>
 <style scoped>
+.detail {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.detail-scroll {
+  height: 100%;
+}
 </style>
