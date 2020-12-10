@@ -2,7 +2,7 @@
   <div class="main">
     <!-- <discover-music /> -->
     <keep-alive>
-      <router-view />
+      <router-view :key="$route.fullPath" />
     </keep-alive>
   </div>
 </template>
