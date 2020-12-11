@@ -1,7 +1,7 @@
 <template>
   <div class="base" v-if="baseInfo != null">
     <div class="title">
-      <img :src="baseInfo.img" alt="" />
+      <img :src="baseInfo.img" alt="" @load="imgLoad" />
     </div>
     <div class="content">
       <div class="top">
@@ -59,6 +59,12 @@ export default {
       default() {
         return {};
       },
+    },
+  },
+  methods: {
+    imgLoad() {
+      // console.log("2");
+      this.$bus.$emit("listDetailLoad");
     },
   },
 };

@@ -1,6 +1,6 @@
 <template>
   <div class="detail">
-    <scroll class="detail-scroll">
+    <scroll class="detail-scroll" ref="scroll">
       <detail-base-info :baseInfo="baseInfo" />
       <music-item :musiclist="musiclist" />
     </scroll>
@@ -16,6 +16,7 @@ import {
   _getSongDetail,
   songDetail,
 } from "network/detail";
+
 import Scroll from "../../components/common/scroll/Scroll.vue";
 
 export default {
@@ -49,16 +50,31 @@ export default {
       }
       // console.log(this.musiclist);
     });
+    setTimeout(() => {
+      this.$refs.scroll.refresh();
+    }, 8000);
+    // this.$bus.$on("listDetailLoad", () => {
+    //   this.$refs.scroll.refresh();
+    // });
+  },
+  mounted() {
+    this.$bus.$on("listDetailLoad", () => {
+      this.$refs.scroll.refresh();
+    });
   },
 };
 </script>
 <style scoped>
 .detail {
-  width: 100%;
+  /* width: 100%; */
+  /* height: 100vh; */
   height: 100%;
   overflow: hidden;
+  position: relative;
 }
 .detail-scroll {
-  height: 100%;
+  height: calc(100% - 45px);
+  /* width: 100%; */
+  /* overflow: hidden; */
 }
 </style>
