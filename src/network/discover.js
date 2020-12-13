@@ -33,3 +33,8 @@ export function _getHighquality(cat, limit) {
         }
     })
 }
+export function _getRankList() {
+    return request({
+        url: '/toplist',
+    })
+}

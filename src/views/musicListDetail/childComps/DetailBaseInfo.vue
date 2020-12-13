@@ -99,6 +99,7 @@ export default {
   /* margin: 0px 20px; */
   padding-top: 30px;
   flex: 1;
+  margin-bottom: 20px;
 }
 .content {
   position: relative;
