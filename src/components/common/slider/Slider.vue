@@ -87,6 +87,7 @@ export default {
     },
     clearAuto() {
       clearInterval(this.timer);
+      // console.log("1");
     },
     imgLoad() {
       // console.log("imgLoad");

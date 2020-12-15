@@ -17,7 +17,7 @@ export default {
 </script>
 <style scoped>
 .main {
-  height: calc(100% - 45px - 50px);
+  height: calc(100% - 45px - 60px);
   width: 100%;
   position: relative;
 }

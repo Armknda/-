@@ -6,19 +6,19 @@
     <!-- <keep-alive>
       <router-view></router-view>
     </keep-alive> -->
+    <play-music />
   </div>
 </template>
 <script>
 import TabBar from "components/content/tabbar/TabBar";
-// import Main from "components/content/Main";
 import Main from "./components/content/Main.vue";
-// import Tab from "./components/content/tab/tab.vue";
-// import Main from "components/content/Main";
+import PlayMusic from "./components/content/playmusic/PlayMusic.vue";
 export default {
   name: "App",
   components: {
     TabBar,
     Main,
+    PlayMusic,
     // Tab,
     // Main,
   },

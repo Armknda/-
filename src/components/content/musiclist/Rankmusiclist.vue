@@ -55,7 +55,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   width: 1000px;
-  justify-content: center;
+  justify-content: right;
   margin: 0 auto;
 }
 .list-item img {
