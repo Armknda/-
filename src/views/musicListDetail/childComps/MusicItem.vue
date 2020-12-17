@@ -12,7 +12,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item, index) in musiclist" :key="index" @load="listLoad">
+        <tr
+          v-for="(item, index) in musiclist"
+          :key="index"
+          @load="listLoad"
+          @dblclick="musicItemClick(index)"
+        >
           <td>
             {{ setSerial(index) }}
           </td>
@@ -35,6 +40,7 @@
 </template>
 <script>
 import { tableMixin } from "./tableMixin";
+import { playMixin } from "../playMixin";
 export default {
   name: "MusicItem",
   props: {
@@ -51,7 +57,7 @@ export default {
       this.$bus.$emit("listDataLoad");
     },
   },
-  mixins: [tableMixin],
+  mixins: [tableMixin, playMixin],
 };
 </script>
 <style scoped>
@@ -65,6 +71,10 @@ export default {
 .music tr {
   height: 30px;
   margin: 0 10px;
+}
+.music tr:hover {
+  background-color: #2c2e32;
+  color: #fff;
 }
 .music tr td {
   border: 1px solid #23262c;

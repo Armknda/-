@@ -15,6 +15,7 @@
     </div>
 
     <div class="player-music-right" v-if="playList[currentIndex] != null">
+      <audio :src="playList[currentIndex].src" autoplay ref="audio"></audio>
       <div class="middle">
         <img :src="playList[currentIndex].pic" alt="" />
       </div>
@@ -50,18 +51,51 @@ export default {
       lyric: "",
       playList: [
         {
-          title: "爱存在（抖音版）（翻自 魏奇奇）",
-          artist: "如懿",
+          title: "海底",
+          artist: "一支榴莲",
           index: "0",
           lrc: "",
           src:
-            "http://m8.music.126.net/20200708181541/dc873a2b4b00f9a2713fced8afe9cd72/ymusic/obj/w5zDlMODwrDDiGjCn8Ky/2839783247/945a/f45b/fa89/87264bf976128116dd2394e5f97c807a.mp3",
+            "http://m801.music.126.net/20201217172429/da992a875f89b4c7ce836236437058b5/jdymusic/obj/w5zDlMODwrDDiGjCn8Ky/1497471810/ae4f/3676/98a8/c98c5b9f5350b8dcb34dfb81f94e73ec.mp3",
           pic:
-            "https://p1.music.126.net/Y3MgpdL1iMno2g0yDnfMXQ==/109951165054657451.jpg",
+            "https://p1.music.126.net/swcW0FE-__ihfjnJqU22Qg==/109951164696345792.jpg",
         },
       ],
       musicList: [],
     };
+  },
+  watch: {
+    music() {
+      if (this.$refs.audio != null) {
+        this.$refs.audio.load();
+      }
+    },
+  },
+  mounted() {
+    this.$bus.$on("playMusic", (list, index, path, musicList) => {
+      this.playList = [];
+      this.path = path;
+      this.playList = list;
+      this.musicList = musicList;
+      this.playList = this.playList.sort((a, b) => {
+        return a.index - b.index;
+      });
+      // console.log(this.playList);
+      this.setCurrentIndex(index);
+    });
+    this.$bus.$on("PlayMusicListItem", (index) => {
+      this.setCurrentIndex(index);
+    });
+  },
+  methods: {
+    setCurrentIndex(index) {
+      for (let i in this.playList) {
+        if (this.playList[i].index == index) {
+          this.currentIndex = i;
+          break;
+        }
+      }
+    },
   },
 };
 </script>

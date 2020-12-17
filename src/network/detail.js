@@ -38,3 +38,19 @@ export class songDetail {
         this.time = formatDate(new Date(songs[0].dt), 'mm:ss')
     }
 }
+export function _getMusicUrl(id) {
+    return request({
+        url: '/song/url',
+        params: {
+            id: id
+        }
+    })
+}
+export function _getLyric(id) {
+    return request({
+        url: '/lyric',
+        params: {
+            id: id
+        }
+    })
+}

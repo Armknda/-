@@ -2,7 +2,7 @@
   <div class="detail">
     <scroll class="detail-scroll" ref="scroll">
       <detail-base-info :baseInfo="baseInfo" />
-      <music-item :musiclist="musiclist" />
+      <music-item :musiclist="musiclist" @musicItemClick="PlayMusic" />
     </scroll>
   </div>
 </template>
@@ -18,7 +18,7 @@ import {
 } from "network/detail";
 
 import Scroll from "../../components/common/scroll/Scroll.vue";
-
+import { indexMixin } from "./indexMixin";
 export default {
   name: "MusicListDetail",
   data() {
@@ -35,6 +35,7 @@ export default {
     MusicItem,
     Scroll,
   },
+  mixins: [indexMixin],
   created() {
     this.id = this.$route.params.id;
 
