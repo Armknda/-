@@ -19,7 +19,7 @@ export default {
       click: true,
       mouseWheel: true,
     });
-    console.log(this.scroll);
+    // console.log(this.scroll);
     // this.refresh();
   },
   methods: {

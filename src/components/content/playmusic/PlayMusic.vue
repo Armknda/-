@@ -15,7 +15,14 @@
     </div>
 
     <div class="player-music-right" v-if="playList[currentIndex] != null">
-      <audio :src="playList[currentIndex].src" autoplay ref="audio"></audio>
+      <audio
+        :src="playList[currentIndex].src"
+        autoplay
+        ref="audio"
+        @timeupdate="audioTimeUpdate()"
+        @playing="musicPlaying()"
+      ></audio>
+
       <div class="middle">
         <img :src="playList[currentIndex].pic" alt="" />
       </div>
@@ -25,7 +32,8 @@
           <div class="music-artist">{{ playList[currentIndex].artist }}</div>
         </div>
         <div class="music-pro">
-          <div class="currentTime">{{ currentTime }}</div>
+          <music-progress ref="music_pro" @click="setMusicCurrent" />
+          <div class="currentTime">{{ currentTime }}/</div>
           <div class="totalTime">{{ duration }}</div>
         </div>
       </div>
@@ -33,8 +41,13 @@
   </div>
 </template>
 <script>
+import MusicProgress from "components/common/progress/Progress";
+import { formatDate } from "assets/common/tool";
 export default {
   name: "PlayMusic",
+  components: {
+    MusicProgress,
+  },
   data() {
     return {
       isPlay: false,
@@ -73,19 +86,20 @@ export default {
   },
   mounted() {
     this.$bus.$on("playMusic", (list, index, path, musicList) => {
-      this.playList = [];
+      // this.playList = [];
       this.path = path;
       this.playList = list;
       this.musicList = musicList;
-      this.playList = this.playList.sort((a, b) => {
-        return a.index - b.index;
-      });
+      // this.playList = this.playList.sort((a, b) => {
+      //   return a.index - b.index;
+      // });
+      // console.log(this.musicList);
       // console.log(this.playList);
       this.setCurrentIndex(index);
     });
-    this.$bus.$on("PlayMusicListItem", (index) => {
-      this.setCurrentIndex(index);
-    });
+    // this.$bus.$on("PlayMusicListItem", (index) => {
+    //   this.setCurrentIndex(index);
+    // });
   },
   methods: {
     setCurrentIndex(index) {
@@ -96,10 +110,46 @@ export default {
         }
       }
     },
+    setMusicCurrent(scale) {
+      this.$refs.audio.currentTime = scale * this.$refs.audio.duration;
+    },
+    audioTimeUpdate() {
+      if (this.$refs.audio != null) {
+        this.currentTime = formatDate(
+          new Date(this.$refs.audio.currentTime * 1000),
+          "mm:ss"
+        );
+        this.duration = formatDate(
+          new Date(this.$refs.audio.duration * 1000),
+          "mm:ss"
+        );
+        let scale = this.$refs.audio.currentTime / this.$refs.audio.duration;
+        this.$refs.music_pro.setProgress(scale);
+
+        // if (this.$refs.audio.currentTime !== null) {
+        //   this.$refs.lyric.scrollLyric(this.$refs.audio.currentTime);
+        //   this.$refs.player.$refs.playerLyric.maxScroll(
+        //     this.$refs.audio.currentTime
+        //   );
+        // }
+      }
+    },
+    musicPlaying() {
+      this.isPlay = true;
+      this.$bus.$emit(
+        "Playing",
+        this.playList[this.currentIndex].index,
+        this.path
+      );
+      if (this.$refs.player != null) this.$refs.player.isPlay = true;
+    },
   },
 };
 </script>
 <style scoped>
+.music-artist {
+  margin-left: 20px;
+}
 .music-pro {
   display: flex;
   justify-content: center;
