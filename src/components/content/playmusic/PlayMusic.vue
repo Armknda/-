@@ -4,7 +4,7 @@
       <div class="pre">
         <img src="~assets/img/playmusic/pre.png" alt="" />
       </div>
-      <div class="play">
+      <div class="play" @click="toggle()">
         <img src="~assets/img/playmusic/play.png" alt="" v-show="!isPlay" />
         <img src="~assets/img/playmusic/play2.png" alt="" v-show="isPlay" />
         <!-- <img src="" alt=""> -->
@@ -21,6 +21,7 @@
         ref="audio"
         @timeupdate="audioTimeUpdate()"
         @playing="musicPlaying()"
+        @pause="musicPause()"
       ></audio>
 
       <div class="middle">
@@ -32,21 +33,38 @@
           <div class="music-artist">{{ playList[currentIndex].artist }}</div>
         </div>
         <div class="music-pro">
-          <music-progress ref="music_pro" @click="setMusicCurrent" />
+          <music-progress ref="music_pro" @childclick="setMusicCurrent" />
           <div class="currentTime">{{ currentTime }}/</div>
           <div class="totalTime">{{ duration }}</div>
         </div>
+      </div>
+      <div class="volumn">
+        <div class="volumn-icon">
+          <img
+            src="~assets/img/playmusic/volumn.svg"
+            alt=""
+            v-show="!isVolume"
+          />
+          <img
+            src="~assets/img/playmusic/novolumn.svg"
+            alt=""
+            v-show="isVolume"
+          />
+        </div>
+        <volume-progress ref="volume_pro" @childclick="setVolume" />
       </div>
     </div>
   </div>
 </template>
 <script>
 import MusicProgress from "components/common/progress/Progress";
+import VolumeProgress from "components/common/progress/Progress";
 import { formatDate } from "assets/common/tool";
 export default {
   name: "PlayMusic",
   components: {
     MusicProgress,
+    VolumeProgress,
   },
   data() {
     return {
@@ -143,18 +161,54 @@ export default {
       );
       if (this.$refs.player != null) this.$refs.player.isPlay = true;
     },
+    musicPause() {
+      this.isPlay = false;
+      if (this.$refs.player != null) this.$refs.player.isPlay = false;
+    },
+    toggle() {
+      this.isPlay = !this.isPlay;
+      if (this.isPlay && this.$refs.audio.readyState == 4)
+        this.$refs.audio.play();
+      else {
+        this.$refs.audio.pause();
+      }
+    },
+    setVolume(scale) {
+      this.$refs.audio.volume = scale;
+    },
   },
 };
 </script>
 <style scoped>
+.currentTime {
+  margin-left: 5px;
+}
+.volumn {
+  width: 150px;
+  height: 30px;
+  margin-left: 30px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.volumn-icon {
+  margin-right: 10px;
+}
+.volumn .volumn-icon img {
+  height: 17px;
+}
 .music-artist {
   margin-left: 20px;
 }
 .music-pro {
+  width: 600px;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .music-top-center {
+  width: 498px;
   display: flex;
   justify-content: center;
   align-items: center;

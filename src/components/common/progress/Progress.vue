@@ -40,14 +40,14 @@ export default {
 </script>
 <style scoped>
 .progress {
-  width: 480px;
+  width: 100%;
   height: 3px;
   border-radius: 2px;
   cursor: pointer;
   background: #454546;
   position: relative;
-  margin-top: 10px;
-  margin-right: 10px;
+  /* margin-top: 10px; */
+  /* margin-right: 10px; */
 }
 .progress .pro-line {
   width: 50px;
