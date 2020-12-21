@@ -38,3 +38,13 @@ export function _getRankList() {
         url: '/toplist',
     })
 }
+export function _getArtist(area, type, limit) {
+    return request({
+        url: '/artist/list',
+        params: {
+            area: area,
+            type: type,
+            limit: limit
+        }
+    })
+}

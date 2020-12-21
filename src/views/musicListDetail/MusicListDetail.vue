@@ -1,7 +1,7 @@
 <template>
   <div class="detail">
     <scroll class="detail-scroll" ref="scroll">
-      <detail-base-info :baseInfo="baseInfo" />
+      <detail-base-info :baseInfo="baseInfo" @allPlay="PlayMusic" />
       <music-item :musiclist="musiclist" @musicItemClick="PlayMusic" />
     </scroll>
   </div>

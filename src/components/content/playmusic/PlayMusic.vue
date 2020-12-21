@@ -1,7 +1,7 @@
 <template>
   <div class="play-music">
     <div class="player-music-left">
-      <div class="pre">
+      <div class="pre" @click="preMusic()">
         <img src="~assets/img/playmusic/pre.png" alt="" />
       </div>
       <div class="play" @click="toggle()">
@@ -9,7 +9,7 @@
         <img src="~assets/img/playmusic/play2.png" alt="" v-show="isPlay" />
         <!-- <img src="" alt=""> -->
       </div>
-      <div class="next">
+      <div class="next" @click="nextMusic()">
         <img src="~assets/img/playmusic/next.png" alt="" />
       </div>
     </div>
@@ -22,6 +22,7 @@
         @timeupdate="audioTimeUpdate()"
         @playing="musicPlaying()"
         @pause="musicPause()"
+        @ended="musicEnded()"
       ></audio>
 
       <div class="middle">
@@ -39,7 +40,7 @@
         </div>
       </div>
       <div class="volumn">
-        <div class="volumn-icon">
+        <div class="volumn-icon" @click="toggleVolume()">
           <img
             src="~assets/img/playmusic/volumn.svg"
             alt=""
@@ -53,18 +54,43 @@
         </div>
         <volume-progress ref="volume_pro" @childclick="setVolume" />
       </div>
+      <div class="icon">
+        <div class="schema" @click="toggleSchema()">
+          <a href="#" title="顺序播放" v-show="schemaIndex == 0">
+            <img src="~assets/img/playmusic/sunxubofang.svg" />
+          </a>
+          <a href="#" title="随机播放" v-show="schemaIndex == 1">
+            <img src="~assets/img/playmusic/suijibofang.svg" />
+          </a>
+          <a href="#" title="单曲循环" v-show="schemaIndex == 2">
+            <img src="~assets/img/playmusic/danquxunhuan.svg" />
+          </a>
+        </div>
+        <div class="music-list" @click="toggleMusicList()">
+          <a href="#" title="歌单">
+            <img src="~assets/img/playmusic/list.svg" alt="" />
+          </a>
+        </div>
+      </div>
     </div>
+    <play-music-list
+      class="paly-music-list"
+      v-show="isMusicList"
+      :music-list="musicList"
+    />
   </div>
 </template>
 <script>
 import MusicProgress from "components/common/progress/Progress";
 import VolumeProgress from "components/common/progress/Progress";
+import PlayMusicList from "./PlayMusicList";
 import { formatDate } from "assets/common/tool";
 export default {
   name: "PlayMusic",
   components: {
     MusicProgress,
     VolumeProgress,
+    PlayMusicList,
   },
   data() {
     return {
@@ -176,10 +202,71 @@ export default {
     setVolume(scale) {
       this.$refs.audio.volume = scale;
     },
+    toggleMusicList() {
+      this.isMusicList = !this.isMusicList;
+    },
+    toggleVolume() {
+      this.isVolume = !this.isVolume;
+      if (this.isVolume) {
+        this.$refs.audio.volume = 0.0;
+      } else {
+        this.$refs.audio.volume = 0.5;
+        this.$refs.volume_pro && this.$refs.volume_pro.setProgress(0.5);
+      }
+    },
+    musicEnded() {
+      switch (this.schemaIndex) {
+        case 0:
+          this.currentIndex >= this.playList.length - 1
+            ? 0
+            : this.currentIndex++;
+          break;
+        case 1:
+          this.currentIndex = Math.floor(Math.random() * this.playList.length);
+          break;
+        case 3:
+          break;
+      }
+    },
+    nextMusic() {
+      if (this.currentIndex >= this.playList.length - 1) this.currentIndex = 0;
+      else this.currentIndex++;
+      this.$refs.audio.src = this.playList[this.currentIndex].src;
+    },
+    preMusic() {
+      if (this.currentIndex <= 0) this.currentIndex = this.playList.length - 1;
+      else this.currentIndex--;
+      this.$refs.audio.src = this.playList[this.currentIndex].src;
+    },
+    toggleSchema() {
+      if (this.schemaIndex >= 2) this.schemaIndex = 0;
+      else this.schemaIndex++;
+    },
   },
 };
 </script>
 <style scoped>
+.icon {
+  margin-left: 30px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  /* width: 40px; */
+}
+.schema {
+  width: 17px;
+  margin-left: 10px;
+}
+.schema img {
+  width: 100%;
+}
+.music-list {
+  width: 17px;
+  margin-left: 30px;
+}
+.music-list img {
+  width: 100%;
+}
 .currentTime {
   margin-left: 5px;
 }
@@ -216,8 +303,9 @@ export default {
 .player-music-right {
   display: flex;
   align-items: center;
-  width: 1150px;
+  width: 950px;
   height: 100%;
+  /* margin-right: 290px; */
 }
 .middle {
   /* position: absolute; */

@@ -6,7 +6,9 @@
     <!-- <keep-alive>
       <router-view></router-view>
     </keep-alive> -->
-    <play-music />
+    <keep-alive>
+      <play-music />
+    </keep-alive>
   </div>
 </template>
 <script>
