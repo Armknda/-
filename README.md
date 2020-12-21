@@ -15,6 +15,15 @@
 
 ## 歌单
 ![musiclist](https://github.com/Armknda/2.0-music/blob/music2.0/itemshow/musiclist.png) ![listdetail](https://github.com/Armknda/2.0-music/blob/music2.0/itemshow/listdetail.png)
+
+## 排行榜
+![ranklist](https://github.com/Armknda/2.0-music/blob/music2.0/itemshow/ranklist1.png) ![](https://github.com/Armknda/2.0-music/blob/music2.0/itemshow/ranklist2.png)
+
+## 歌手
+![singer](https://github.com/Armknda/2.0-music/blob/music2.0/itemshow/singer.png)
+
+## 歌单音乐播放
+![play](https://github.com/Armknda/2.0-music/blob/music2.0/itemshow/play.png)
 ## Project setup
 ```
 npm install
