@@ -2,7 +2,7 @@
 
 ## 项目简介
 本项目后端接口使用Binaryify的开源项目，项目地址：https://github.com/Binaryify/NeteaseCloudMusicApi ，使用文档地址：https://binaryify.github.io/NeteaseCloudMusicApi/#/ 。
-本项目做为学习vue的练手
+本项目所用技术栈：vue-cli,vue-router,vuex,better-scroll,axios。
 
 ## Project setup
 ```
