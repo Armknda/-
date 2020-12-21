@@ -11,7 +11,10 @@
 ## 项目效果图
 
 ## 首页
+![index](https://github.com/Armknda/2.0-music/blob/music2.0/itemshow/index1.png) ![index](https://github.com/Armknda/2.0-music/blob/music2.0/itemshow/index2.png)
 
+## 歌单
+![musiclist](https://github.com/Armknda/2.0-music/blob/music2.0/itemshow/musiclist.png) ![listdetail](https://github.com/Armknda/2.0-music/blob/music2.0/itemshow/listdetail.png)
 ## Project setup
 ```
 npm install
